@@ -66,17 +66,18 @@ public class BasicReg {
 
     }
 
+    //Generate random first name
     public static String makeFirstName() {
         return faker.name().firstName();
     }
-
+    //Generate random last name
     public static String makeLastName() {
         return faker.name().lastName();
     }
 
+    // Generate random email address
     public static String makeEmail(String domain) {
         StringBuilder emailAddress = new StringBuilder();
-        // Generate random email address
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
         while (emailAddress.length() < 5) {
             int character = (int) (Math.random() * 26);
@@ -87,7 +88,7 @@ public class BasicReg {
         emailAddress.append("@").append(domain);
         return emailAddress.toString();
     }
-
+// write new user to file
     public static void writeUserToFile(String email, String password) throws IOException {
         try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter("data.txt", true)))) {
             pr.printf("New user email is: %s and its password is %s\n", email, password);

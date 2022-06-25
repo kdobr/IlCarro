@@ -17,7 +17,6 @@ public class BasicLogin {
     WebElement negativeLoginTitle;
 
 
-    //By loginButtonSelector = By.xpath("//a[@class='navigation-link'][normalize-space()='Log in']");
     By loginButtonSelector = By.xpath("//a[starts-with(@class, 'navigation-link')][normalize-space()='Log in']");
     By emailSelector = By.xpath("//input[@id='email']");
     By passwordSelector = By.xpath("//input[@id='password']");
@@ -35,12 +34,15 @@ public class BasicLogin {
     }
 
     public void fillAndSubmitLoginForm(String email, String password) throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(500);
+        //open login form
         wd.findElement(loginButtonSelector).click();
-
+        //fill login form
         type(emailSelector, email);
         type(passwordSelector, password);
+
         wd.findElement(yallahSelector).click();
+        //find positive and negative result title elements
         positiveLoginTitle = wd.findElement(positiveLoginTitleSelector);
         negativeLoginTitle = wd.findElement(negativeLoginTitleSelector);
     }

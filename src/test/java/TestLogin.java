@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class TestLogin extends BasicLogin {
 
+// method with one permanent user
 
 //    @Test
 //    public void positiveLogin() throws IOException, InterruptedException {
@@ -16,20 +17,23 @@ public class TestLogin extends BasicLogin {
 //        Assert.assertEquals(positiveLoginTitle.getText(), "Logged in");
 //    }
 
+    // method reads list of users from file
     @Test
     public void positiveLogin() throws IOException, InterruptedException {
         File file = new File(
                 "data.txt");
 
         try (BufferedReader br
-                      = new BufferedReader(new FileReader(file))) {
-            // Declaring a string variable
+                     = new BufferedReader(new FileReader(file))) {
+
             String[] strArr;
             String str;
             String email;
             String password;
 
+            //reading all strings
             while ((str = br.readLine()) != null) {
+                //split whole string to words by symol " "
                 strArr = str.split(" ");
                 email = strArr[4];
                 password = strArr[9];

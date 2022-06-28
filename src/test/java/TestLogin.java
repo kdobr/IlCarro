@@ -6,17 +6,17 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class TestLogin extends BasicLogin {
+public class TestLogin extends BasicRegLogin {
 
 
     @Test
     public void correctLoginOneUser() throws InterruptedException {
-        user.openLoginForm();
-        user.fillLoginForm("ggztb2@google.com", "Aa1aaaaa");
-        user.submitLoginForm();
-        String positiveTitle = user.findPositiveTitle();
+        userLogin.openLoginForm();
+        userLogin.fillLoginForm("ggztb2@google.com", "Aa1aaaaa");
+        userLogin.submitLoginForm();
+        String positiveTitle = userLogin.findPositiveTitle();
         Assert.assertEquals(positiveTitle, "Logged in");
-        user.logout();
+        userLogin.logout();
     }
 
     @Test
@@ -33,22 +33,22 @@ public class TestLogin extends BasicLogin {
                 strArr = str.split(" ");
                 email = strArr[4];
                 password = strArr[9];
-                user.openLoginForm();
-                user.fillLoginForm(email, password);
-                user.submitLoginForm();
-                String positiveTitle = user.findPositiveTitle();
+                userLogin.openLoginForm();
+                userLogin.fillLoginForm(email, password);
+                userLogin.submitLoginForm();
+                String positiveTitle = userLogin.findPositiveTitle();
                 Assert.assertEquals(positiveTitle, "Logged in");
-                user.logout();
+                userLogin.logout();
             }
         }
     }
 
     @Test
     public void incorrectLoginUserIncorrect() throws InterruptedException {
-        user.openLoginForm();
-        user.fillLoginForm("ggztb@google.com", "Aa1aaaaa");
-        user.submitLoginForm();
-        String negativeTitle = user.findNegativeTitle();
+        userLogin.openLoginForm();
+        userLogin.fillLoginForm("ggztb@google.com", "Aa1aaaaa");
+        userLogin.submitLoginForm();
+        String negativeTitle = userLogin.findNegativeTitle();
         Assert.assertEquals(negativeTitle, "Wrong email or password");
     }
 }

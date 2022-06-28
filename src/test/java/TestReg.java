@@ -3,18 +3,16 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TestReg extends BasicReg {
+public class TestReg extends BasicRegLogin {
 
     @Test
     public void testRegistration() throws IOException {
-        user.openRegForm();
-        user.fillRegForm();
-        user.submitRegForm();
-        String regTitle = user.getRegTabTitle();
-        String regText = user.getRegTabText();
+        userReg.openRegForm();
+        userReg.fillRegForm();
+        userReg.submitRegForm();
+        String regTitle = userReg.getRegTabTitle();
+        String regText = userReg.getRegTabText();
         Assert.assertEquals(regTitle, "Registered");
         Assert.assertEquals(regText, "You are logged in success");
-
     }
-
 }

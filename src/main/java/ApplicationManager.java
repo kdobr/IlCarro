@@ -1,13 +1,20 @@
+
+
 public class ApplicationManager {
 
-    private HelperBase userBase;
-    private HelperUserLogin userLogin;
-    private HelperUserReg userReg;
+    private final HelperSearch search;
+    private final HelperBase userBase;
+    private final HelperUserLogin userLogin;
+    private final HelperUserReg userReg;
+    private final HelperUserCar userCar;
+
 
     public ApplicationManager() {
-        this.userLogin = new HelperUserLogin();
-        this.userReg = new HelperUserReg();
-        this.userBase = new HelperBase();
+        userLogin = new HelperUserLogin();
+        userReg = new HelperUserReg();
+        userBase = new HelperBase();
+        userCar = new HelperUserCar();
+        search = new HelperSearch();
     }
 
     public HelperUserLogin getUserLogin() {
@@ -20,5 +27,13 @@ public class ApplicationManager {
 
     public HelperBase getUserBase() {
         return userBase;
+    }
+
+    public HelperUserCar getUserCar() {
+        return userCar;
+    }
+
+    public HelperSearch getSearch() {
+        return search;
     }
 }

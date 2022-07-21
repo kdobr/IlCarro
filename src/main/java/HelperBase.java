@@ -2,12 +2,15 @@ import com.github.javafaker.Faker;
 import models.User;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.events.WebDriverListener;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.time.Duration;
@@ -18,6 +21,7 @@ public class HelperBase {
     static WebDriverWait wait;
     static Faker faker;
     WebDriverListener listener;
+    Logger logger;
     WebElement dateElement;
 
     By yallahSelector = By.xpath("//button[@type='submit']");
@@ -25,12 +29,15 @@ public class HelperBase {
 
 
     public void startUp() {
+        logger = LoggerFactory.getLogger(HelperBase.class);
         listener = new MyListener();
-       // wd = new ChromeDriver();
         wd = new EventFiringDecorator(listener).decorate(new ChromeDriver());
+        //wd = new EventFiringDecorator(listener).decorate(new FirefoxDriver());
+        logger.info("all Tests start in ChromeDriver");
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wd.navigate().to("https://ilcarro-1578153671498.web.app/search");
         wd.manage().window().maximize();
+        logger.info("=========Current URL is: "+wd.getCurrentUrl());
         wait = new WebDriverWait(wd, Duration.ofSeconds(10));
         faker = new Faker();
 
@@ -66,9 +73,10 @@ public class HelperBase {
         wd.findElement(By.cssSelector("button.positive-button")).click();
         wd.findElement(By.xpath("//a[normalize-space()='Logout']")).click();
     }
-    public void submit() {
+    public void submit() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(yallahSelector)).click();
       //  wd.findElement(yallahSelector).click();
+        Thread.sleep(2000);
     }
 
 
@@ -91,7 +99,23 @@ public class HelperBase {
     }
 
     public void newSearch(){
+        //hit "Search" link
         wd.findElement(By.id("0")).click();
+        //click inside date field
+        dateElement = wd.findElement(By.id("dates"));
+        dateElement.click();
+        //closing calendar appeared by clicking escape
+        dateElement.sendKeys(Keys.ESCAPE);
+        //taking OS name
+        String os = System.getProperty("os.name");
+        //depending on OS delete text in date field by enter appropriate hotkeys combination
+        if (os.startsWith("Windows")){
+             dateElement.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        }else{
+            //need to add correct names of other OS and their hotkeys
+            dateElement.sendKeys(Keys.chord(Keys.COMMAND, "a"));
+        }
+
 
     }
 

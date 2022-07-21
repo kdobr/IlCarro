@@ -13,7 +13,8 @@ public class TestLogin extends BasicTest {
     @Test(retryAnalyzer = Retry.class)
     public void correctLoginOneUser() throws InterruptedException {
         userLogin.openLoginForm();
-        userLogin.fillLoginForm("ggztb2@google.com", "Aa1aaaaa");
+        userLogin.fillLoginForm("ggztb@google.com", "Aa1aaaaa");
+        logger.info("login with mail 'ggztb2@google.com' and password 'Aa1aaaaa'");
         userLogin.submit();
         String positiveTitle = userLogin.findPositiveTitle();
         Assert.assertEquals(positiveTitle, "Logged in");
@@ -35,6 +36,7 @@ public class TestLogin extends BasicTest {
                 password = strArr[9];
                 userLogin.openLoginForm();
                 userLogin.fillLoginForm(email, password);
+                logger.info("login with email: "+email+", and password: "+password);
                 userLogin.submit();
                 String positiveTitle = userLogin.findPositiveTitle();
                 Assert.assertEquals(positiveTitle, "Logged in");
@@ -47,6 +49,7 @@ public class TestLogin extends BasicTest {
     public void incorrectLoginUser() throws InterruptedException {
         userLogin.openLoginForm();
         userLogin.fillLoginForm("ggztb@google.com", "Aa1aaaaa");
+        logger.info("login with wrong mail 'ggztb@google.com' and password 'Aa1aaaaa'");
         userLogin.submit();
         String negativeTitle = userLogin.findNegativeTitle();
         Assert.assertEquals(negativeTitle, "Wrong email or password");

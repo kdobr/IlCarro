@@ -23,18 +23,7 @@ public class HelperUserReg extends HelperBase {
         wd.findElement(signUpButtonSelector).click();
     }
 
-//    public void fillRegForm() throws IOException {
-//        String name = generateFirstName();
-//        type(nameSelector, name);
-//        String lastName = generateLastName();
-//        type(lastNameSelector, lastName);
-//        String email = generateEmail("google.com");
-//        type(emailSelector, email);
-//        type(passwordSelector, "Aa1aaaaa");
-//        writeUserToFile(email, "Aa1aaaaa");
-//    }
-
-    public void fillRegForm(User user)  {
+    public void fillRegForm(User user) {
         type(nameSelector, user.getName());
         type(lastNameSelector, user.getLastName());
         type(emailSelector, user.getEmail());
@@ -44,7 +33,6 @@ public class HelperUserReg extends HelperBase {
     public void iAgreeCheckBox() {
         Actions action = new Actions(wd);
         action.moveToElement(wd.findElement(iAgreeSelector), 7, 7).click().build().perform();
-
     }
 
     public void submitRegForm() {
@@ -67,12 +55,10 @@ public class HelperUserReg extends HelperBase {
         wd.findElement(By.xpath("//button[normalize-space()='Ok']")).click();
         wd.findElement(By.xpath("//a[normalize-space()='Logout']")).click();
         wd.findElement(By.cssSelector("div.header img[alt='logo']")).click();
-
     }
 
     public void goHome() {
         wd.findElement(By.cssSelector("div.header img[alt='logo']")).click();
-
     }
 
     public boolean asserFailPasswordFormat() {

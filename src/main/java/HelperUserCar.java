@@ -8,8 +8,10 @@ import org.openqa.selenium.support.ui.Select;
 public class HelperUserCar extends HelperBase {
 
 
-    public void openCarForm() {
+    public void openCarForm() throws InterruptedException {
+        Thread.sleep(1000);
         wd.findElement(By.id("1")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[normalize-space()='Let the car work']") ));
     }
 
     public void addPhoto(String link) {
@@ -39,19 +41,11 @@ public class HelperUserCar extends HelperBase {
     private void select(By locator, String option) {
         Select select = new Select(wd.findElement(locator));
         select.selectByValue(option);
-        //select.selectByIndex(1);
-        //select.selectByVisibleText(option);
     }
 
     private void typeAddress(String address) {
-        //click on 1st address
-
         wd.findElement(By.id("pickUpPlace")).sendKeys(address);
         new Actions(wd).moveToElement(wd.findElement(By.id("pickUpPlace"))).moveByOffset(0, 50).click().perform();
-        // wd.findElement(By.cssSelector("div.pac-item")).click();
-      //  Thread.sleep(2000);
-
-
     }
 
     public void login(User user) throws InterruptedException {
@@ -60,6 +54,7 @@ public class HelperUserCar extends HelperBase {
         //userLogin.fillLoginForm("ggztb2@google.com", "Aa1aaaaa");
         userLogin.fillLoginForm(user);
         userLogin.submit();
+        wd.findElement(By.cssSelector("button.positive-button")).click();
     }
 
     public void returnHome() {

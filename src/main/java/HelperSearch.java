@@ -1,8 +1,6 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -75,7 +73,4 @@ public class HelperSearch extends HelperBase {
         return wd.findElement(By.xpath("//div[@class='ng-star-inserted']")).getText().contains("You can't pick date before today");
     }
 
-    public boolean checkIfYallaInactive() {
-        return dateElement.isDisplayed();
-    }
 }

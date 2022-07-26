@@ -36,8 +36,6 @@ public class HelperUserLogin extends HelperBase {
         type(passwordSelector, user.getPassword());
     }
 
-
-
     public String findPositiveTitle() {
         positiveLoginTitle = wd.findElement(positiveLoginTitleSelector);
         wait.until(ExpectedConditions.textToBePresentInElement(positiveLoginTitle, "Logged in"));
@@ -55,11 +53,13 @@ public class HelperUserLogin extends HelperBase {
         return alert.isPresent();
     }
 
-    public void closeAuthorizeErrorTab(){
+    public void closeAuthorizeErrorTab() {
         okToCloseAuthorizeErrorTab = wd.findElement(closeAuthorizeErrorTabSelector);
         okToCloseAuthorizeErrorTab.click();
-       // wait.until(ExpectedConditions.stalenessOf(okToCloseAuthorizeErrorTab));
         wd.findElement(By.cssSelector("div.header img[alt='logo']")).click();
+    }
 
+    public void firstLogout() {
+        wd.findElement(By.xpath("//a[normalize-space()='Logout']")).click();
     }
 }

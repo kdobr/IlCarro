@@ -2,14 +2,14 @@ import com.github.javafaker.Faker;
 import models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utls.MyDataProvider;
 
 import java.io.IOException;
 
 public class TestReg extends BasicTest {
 
-    @Test
-    public void testRegistrationRandome() throws IOException {
-        User user = new User(new Faker());
+    @Test(dataProvider = "registerWithFaker", dataProviderClass = MyDataProvider.class)
+    public void testRegistrationRandome(User user) throws IOException {
         userReg.openRegForm();
         userReg.fillRegForm(user);
         userReg.iAgreeCheckBox();

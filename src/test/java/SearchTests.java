@@ -11,21 +11,21 @@ public class SearchTests extends BasicTest {
         carSearch.newSearch();
     }
 
-    @Test(priority = 1, enabled = false)
+    @Test(priority = 1)
     public void searchCurrentMonth() throws InterruptedException {
-        carSearch.searchCar("Tel Aviv", "7/25/2022", "7/30/2022");
+        carSearch.searchCar("Tel Aviv", "7/27/2022", "7/30/2022");
         carSearch.submit();
         Assert.assertTrue(carSearch.isCarListPresent());
     }
 
-    @Test(priority = 2, enabled = false)
+    @Test(priority = 2)
     public void searchCurrentMonthOpposite() throws InterruptedException {
-        carSearch.searchCar("Haifa", "7/26/2022", "7/23/2022");
+        carSearch.searchCar("Haifa", "7/30/2022", "7/28/2022");
         carSearch.submit();
         Assert.assertTrue(carSearch.isCarListPresent());
     }
 
-    @Test(priority = 3, enabled = false)
+    @Test(priority = 3)
     public void searchNextMonth() throws InterruptedException {
         carSearch.searchCar("Tel Aviv", "8/03/2022", "08/30/2022");
         carSearch.submit();

@@ -21,6 +21,11 @@ public class User {
         this.password = "Aa1aaaaa";
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "models.User{" +

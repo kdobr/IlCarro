@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class TestLogin extends BasicTest {
 
-    @BeforeClass
+    @BeforeClass (alwaysRun = true)
     public void goToMain() {
         if (userLogin.isUserLogged())
             userLogin.firstLogout();
@@ -28,7 +28,7 @@ public class TestLogin extends BasicTest {
         userLogin.logout();
     }
 
-    @Test
+    @Test(groups = {"web"})
     public void correctLoginUsersFromFile() throws IOException, InterruptedException {
         File file = new File("data.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

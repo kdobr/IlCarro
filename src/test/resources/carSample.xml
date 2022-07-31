@@ -1,1 +1,19 @@
-<Car><address>Haifa, Israel</address><producer>BMW</producer><model>5</model><year>2021</year><engine>3.0</engine><fuel>Petrol</fuel><gear>AT</gear><doors>5</doors><seats>4</seats><clasS>C</clasS><fuelConsumption>6.5</fuelConsumption><regNumber/><price>200</price><distanceIncluded>800</distanceIncluded><features>child seat</features><about>no smoke</about><wd>AWD</wd></Car>
+<Car>
+    <address>Haifa, Israel</address>
+    <producer>BMW</producer>
+    <model>5</model>
+    <year>2021</year>
+    <engine>3.0</engine>
+    <fuel>Petrol</fuel>
+    <gear>AT</gear>
+    <doors>5</doors>
+    <seats>4</seats>
+    <clasS>C</clasS>
+    <fuelConsumption>6.5</fuelConsumption>
+    <regNumber/>
+    <price>200</price>
+    <distanceIncluded>800</distanceIncluded>
+    <features>child seat</features>
+    <about>no smoke</about>
+    <wd>AWD</wd>
+</Car>

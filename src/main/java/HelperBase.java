@@ -3,6 +3,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.events.WebDriverListener;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,16 +23,26 @@ public class HelperBase {
     WebDriverListener listener;
     Logger logger;
     WebElement dateElement;
+    static String browser = System.getProperty("browser", Browser.CHROME.browserName());
 
     By yallahSelector = By.xpath("//button[@type='submit']");
     By positiveCarAddTitleSelector = By.cssSelector("[class='dialog-container'] h1");
 
 
     public void startUp() {
+
         logger = LoggerFactory.getLogger(HelperBase.class);
         listener = new MyListener();
-        wd = new EventFiringDecorator(listener).decorate(new ChromeDriver());
-        //wd = new EventFiringDecorator(listener).decorate(new FirefoxDriver());
+        //if (browser.equals(Browser.FIREFOX.browserName())){
+        if (browser.equals("firefox")){
+            wd = new FirefoxDriver();
+           // wd = new EventFiringDecorator(listener).decorate(new FirefoxDriver());
+//        } else if (browser.equals(Browser.CHROME.browserName())) {
+        } else if (browser.equals("chrome")) {
+            wd = new ChromeDriver();
+           // wd = new EventFiringDecorator(listener).decorate(new ChromeDriver());
+        }
+        wd = new EventFiringDecorator(listener).decorate(wd);
         logger.info("all Tests start in ChromeDriver");
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wd.navigate().to("https://ilcarro-1578153671498.web.app/search");

@@ -6,14 +6,14 @@ import org.testng.annotations.Test;
 
 public class SearchTests extends BasicTest {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void startNewSearch() {
         carSearch.newSearch();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, groups = {"web"})
     public void searchCurrentMonth() throws InterruptedException {
-        carSearch.searchCar("Tel Aviv", "7/27/2022", "7/30/2022");
+        carSearch.searchCar("Tel Aviv", "7/28/2022", "7/30/2022");
         carSearch.submit();
         Assert.assertTrue(carSearch.isCarListPresent());
     }

@@ -18,8 +18,8 @@ public class TestReg extends BasicTest {
         userReg.saveUserToFile(user);
     }
 
-    @Test
-    public void testRegistrationLiz() {
+    @Test(groups = {"web"})
+    public void testRegistrationLiz() throws IOException {
         int i = (int) System.currentTimeMillis() / 100;
         User user = new User().setName("Liz").setLastName("Snow").setEmail("fox" + i + "@gmail.com").setPassword("Ff12345$");
         userReg.openRegForm();
@@ -27,6 +27,7 @@ public class TestReg extends BasicTest {
         userReg.iAgreeCheckBox();
         userReg.submitRegForm();
         assertAndClose();
+        userReg.saveUserToFile(user);
     }
 
     @Test

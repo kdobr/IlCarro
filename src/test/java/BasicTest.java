@@ -16,19 +16,19 @@ public class BasicTest {
     protected static HelperSearch carSearch = am.getSearch();
     public static Logger logger;
 
-    @BeforeSuite
+    @BeforeSuite (alwaysRun = true)
     public void start() {
         base.startUp();
         logger = base.logger;
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void startLogger(Method method) {
         logger.info("Start execute Test: " + method.getName());
     }
 
 
-    @AfterSuite
+    @AfterSuite (alwaysRun = true)
     public void tearDown() throws IOException {
         base.tearDown();
     }

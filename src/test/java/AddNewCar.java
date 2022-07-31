@@ -10,14 +10,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class AddNewCar extends BasicTest {
 
-    @BeforeMethod
+    @BeforeMethod (alwaysRun = true)
     public void preCondition() throws InterruptedException {
         if (!userCar.isUserLogged()) {
             userCar.login(new User().setEmail("ggztb2@google.com").setPassword("Aa1aaaaa"));
         }
     }
 
-    @Test
+    @Test(groups = {"web", "smoke", "regress"})
     public void addNewCarSuccess() throws InterruptedException {
 
         int number = ThreadLocalRandom.current().nextInt(100, 10000 + 1);
@@ -59,7 +59,7 @@ public class AddNewCar extends BasicTest {
         Assert.assertEquals(positiveTitle, "Car added");
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void goHome() {
         userCar.returnHome();
     }

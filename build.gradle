@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.5'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.2.2'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
+    implementation 'ch.qos.logback:logback-classic:1.2.8'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.7'
+
+}
+
+test {
+    useTestNG()
+}
+
+task reg(type: Test) {
+    useTestNG() {
+        def groups = System.getProperty('groups');
+        if (groups != null) {
+            includeGroups groups
+        }
+        def suite = System.getProperty('suite', '')
+
+        if (suite.equals('login')) {
+            suites 'src/test/resources/testngLog.xml'
+        } else if (suite.equals('register')) {
+            suites 'src/test/resources/testngReg.xml'
+        } else if (suite.equals('addcar')) {
+            suites 'src/test/resources/testngAddNewCar.xml'
+        } else suites 'src/test/resources/testng.xml'
+
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+    }
+    task hello {
+        doLast {
+            println 'Hello world!'
+        }
+    }
+}

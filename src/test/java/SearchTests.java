@@ -48,7 +48,7 @@ public class SearchTests extends BasicTest {
         Assert.assertTrue(carSearch.ifPositiveResultAppered());
     }
 
-    @Test(priority = 6)
+    @Test(priority = 6, groups = {"web"})
     public void searchInThePast() throws InterruptedException {
         carSearch.searchCarInThePast("Haifa", "02/02/2022", "02/26/2022");
         Assert.assertTrue(carSearch.earlyPickUpProhibitedText());

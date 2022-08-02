@@ -28,6 +28,7 @@ public class TestReg extends BasicTest {
         userReg.submitRegForm();
         assertAndClose();
         userReg.saveUserToFile(user);
+        System.out.println("checking...");
     }
 
     @Test

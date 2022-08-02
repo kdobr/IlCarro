@@ -44,6 +44,7 @@ public class TestLogin extends BasicTest {
                 userLogin.submit();
                 String positiveTitle = userLogin.findPositiveTitle();
                 Assert.assertEquals(positiveTitle, "Logged in");
+                System.out.println("checking....");
                 userLogin.logout();
             }
         }

@@ -13,28 +13,28 @@ public class SearchTests extends BasicTest {
 
     @Test(priority = 1, groups = {"web"})
     public void searchCurrentMonth() throws InterruptedException {
-        carSearch.searchCar("Tel Aviv", "7/28/2022", "7/30/2022");
+        carSearch.searchCar("Tel Aviv", "9/28/2022", "9/30/2022");
         carSearch.submit();
         Assert.assertTrue(carSearch.isCarListPresent());
     }
 
     @Test(priority = 2)
     public void searchCurrentMonthOpposite() throws InterruptedException {
-        carSearch.searchCar("Haifa", "7/30/2022", "7/28/2022");
+        carSearch.searchCar("Haifa", "9/30/2022", "9/28/2022");
         carSearch.submit();
         Assert.assertTrue(carSearch.isCarListPresent());
     }
 
     @Test(priority = 3)
     public void searchNextMonth() throws InterruptedException {
-        carSearch.searchCar("Tel Aviv", "8/03/2022", "08/30/2022");
+        carSearch.searchCar("Tel Aviv", "10/03/2022", "10/30/2022");
         carSearch.submit();
         Assert.assertTrue(carSearch.isCarListPresent());
     }
 
     @Test(priority = 4)
     public void searchThisYear() throws InterruptedException {
-        carSearch.searchCar("Tel Aviv", "8/05/2022", "10/26/2022");
+        carSearch.searchCar("Tel Aviv", "11/05/2022", "12/26/2022");
         carSearch.submit();
         Assert.assertTrue(carSearch.isCarListPresent());
         Assert.assertTrue(carSearch.ifPositiveResultAppered());
@@ -42,7 +42,7 @@ public class SearchTests extends BasicTest {
 
     @Test(priority = 5)
     public void searchAny() throws InterruptedException {
-        carSearch.searchCar("Haifa", "8/05/2022", "02/26/2023");
+        carSearch.searchCar("Haifa", "10/05/2022", "11/26/2023");
         carSearch.submit();
         Assert.assertTrue(carSearch.isCarListPresent());
         Assert.assertTrue(carSearch.ifPositiveResultAppered());

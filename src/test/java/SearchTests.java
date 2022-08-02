@@ -42,7 +42,7 @@ public class SearchTests extends BasicTest {
 
     @Test(priority = 5)
     public void searchAny() throws InterruptedException {
-        carSearch.searchCar("Haifa", "10/05/2022", "11/26/2023");
+        carSearch.searchCar("Haifa", "10/05/2022", "05/25/2023");
         carSearch.submit();
         Assert.assertTrue(carSearch.isCarListPresent());
         Assert.assertTrue(carSearch.ifPositiveResultAppered());
